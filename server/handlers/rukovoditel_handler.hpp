@@ -1,5 +1,8 @@
-#ifndef USEHANDLER_H
-#define USEHANDLER_H
+#pragma once
+
+#include <iostream>
+#include <iostream>
+#include <fstream>
 
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -19,22 +22,13 @@
 #include "Poco/Util/Option.h"
 #include "Poco/Util/OptionSet.h"
 #include "Poco/Util/HelpFormatter.h"
-#include <iostream>
-#include <iostream>
-#include <fstream>
 
-using Poco::DateTimeFormat;
-using Poco::DateTimeFormatter;
-using Poco::ThreadPool;
-using Poco::Timestamp;
-using Poco::Net::HTMLForm;
 using Poco::Net::HTTPRequestHandler;
 using Poco::Net::HTTPRequestHandlerFactory;
 using Poco::Net::HTTPServer;
 using Poco::Net::HTTPServerParams;
 using Poco::Net::HTTPServerRequest;
 using Poco::Net::HTTPServerResponse;
-using Poco::Net::NameValueCollection;
 using Poco::Net::ServerSocket;
 using Poco::Util::Application;
 using Poco::Util::HelpFormatter;
@@ -42,27 +36,15 @@ using Poco::Util::Option;
 using Poco::Util::OptionCallback;
 using Poco::Util::OptionSet;
 using Poco::Util::ServerApplication;
+using Poco::DateTimeFormat;
+using Poco::DateTimeFormatter;
+using Poco::ThreadPool;
+using Poco::Timestamp;
 
-#include "../../database/user.h"
-#include "../../helper.h"
+#include "../../database/report.hpp"
+//#include "../../helper.h"
 
-static bool hasSubstr(const std::string &str, const std::string &substr)
-{
-    if (str.size() < substr.size())
-        return false;
-    for (size_t i = 0; i <= str.size() - substr.size(); ++i)
-    {
-        bool ok{true};
-        for (size_t j = 0; ok && (j < substr.size()); ++j)
-            ok = (str[i + j] == substr[j]);
-        if (ok)
-            return true;
-    }
-    return false;
-}
-
-class UserHandler : public HTTPRequestHandler
-{
+class RukovoditelHandler : public HTTPRequestHandler {
 private:
     bool check_name(const std::string &name, std::string &reason)
     {
@@ -88,7 +70,7 @@ private:
     };
 
 public:
-    UserHandler(const std::string &format) : _format(format)
+    RukovoditelHandler(const std::string &format) : _format(format)
     {
     }
 
