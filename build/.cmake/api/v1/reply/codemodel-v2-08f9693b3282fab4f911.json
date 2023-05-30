@@ -6,6 +6,12 @@
 			[
 				{
 					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.15"
@@ -16,6 +22,36 @@
 					[
 						0
 					]
+				},
+				{
+					"build" : "database",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "database"
+				},
+				{
+					"build" : "util",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "util"
+				},
+				{
+					"build" : "service",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "service"
 				}
 			],
 			"name" : "Debug",
@@ -24,7 +60,10 @@
 				{
 					"directoryIndexes" : 
 					[
-						0
+						0,
+						1,
+						2,
+						3
 					],
 					"name" : "POCO-SERVER",
 					"targetIndexes" : 
@@ -38,7 +77,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "server::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-server-Debug-d96947edbf0c6d79f5d9.json",
+					"jsonFile" : "target-server-Debug-cba38b667539de5b1c8a.json",
 					"name" : "server",
 					"projectIndex" : 0
 				}

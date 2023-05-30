@@ -1,7 +1,10 @@
+#include <Poco/Data/MySQL/Connector.h>
+#include <Poco/Data/SessionFactory.h>
+
 #include "database.hpp"
 #include "config/config.hpp"
 
-Database::Database(){
+Database::Database() {
   std::string conn_string = "";
   
   conn_string += "host=" + Config::host;
@@ -21,6 +24,6 @@ Database& Database::get(){
   return instance;
 }
 
-Poco::Data::Session Database::create_session(){
+Poco::Data::Session Database::create_session() {
   return Poco::Data::Session(conn_pool->get());
 }

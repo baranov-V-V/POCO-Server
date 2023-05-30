@@ -54,6 +54,11 @@
     "streambuf": "cpp",
     "cfenv": "cpp",
     "cinttypes": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "codecvt": "cpp",
+    "condition_variable": "cpp",
+    "iomanip": "cpp",
+    "mutex": "cpp",
+    "thread": "cpp"
   }
 }

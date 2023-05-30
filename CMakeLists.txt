@@ -21,21 +21,20 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_executable(server 
   main.cpp
-  database/database.cpp
-  database/user.cpp
 )
+
+add_subdirectory(database)
+add_subdirectory(util)
+add_subdirectory(service)
 
 target_include_directories(server PRIVATE "${CMAKE_BINARY_DIR}")
 target_include_directories(server
   PUBLIC
-    ${CMAKE_PROJECT_DIR}/config/.      
     ${CMAKE_PROJECT_DIR}/database/.      
     ${CMAKE_PROJECT_DIR}/service/.
+    ${CMAKE_PROJECT_DIR}/server/.
+    ${CMAKE_PROJECT_DIR}/util/.
 )
-target_compile_options(server PRIVATE -Wall -Wextra -pedantic -Werror)
-
-set_target_properties(server PROPERTIES LINKER_LANGUAGE CXX)
-set_target_properties(server PROPERTIES CXX_STANDARD 17 CXX_STANDARD_REQUIRED ON)
 
 target_link_libraries(server 
   PRIVATE 
@@ -43,8 +42,6 @@ target_link_libraries(server
     ${Poco_LIBRARIES}
     "PocoData"
     "PocoDataMySQL"
-    "mysqlclient"
-    ZLIB::ZLIB
 )
 
 

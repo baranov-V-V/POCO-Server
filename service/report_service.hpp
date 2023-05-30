@@ -8,9 +8,9 @@ class ReportService {
  public:
   ReportService() = delete;
 
-  static std::optional<Report> ReportService::create_report(
+  static std::optional<Report> create_report(
     const std::string& login, 
-    const std::string& passord,
+    const std::string& password,
     const std::string& tovar_name
   );
 };

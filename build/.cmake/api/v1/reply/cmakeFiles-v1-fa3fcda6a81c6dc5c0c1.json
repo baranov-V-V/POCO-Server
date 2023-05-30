@@ -725,6 +725,15 @@
 		{
 			"isExternal" : true,
 			"path" : "/usr/local/lib/cmake/Poco/PocoNetSSLTargets-relwithdebinfo.cmake"
+		},
+		{
+			"path" : "database/CMakeLists.txt"
+		},
+		{
+			"path" : "util/CMakeLists.txt"
+		},
+		{
+			"path" : "service/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

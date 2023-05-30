@@ -18,5 +18,5 @@ struct Report {
 
   static Poco::JSON::Object::Ptr to_json(const Report& report);
   
-  static void crate_report_table();
+  static void create_report_table();
 };
