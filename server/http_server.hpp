@@ -1,5 +1,4 @@
-#ifndef HTTPWEBSERVER_H
-#define HTTPWEBSERVER_H
+#pragma once
 
 #include "Poco/Net/HTTPServer.h"
 #include "Poco/Net/HTTPRequestHandler.h"
@@ -37,47 +36,34 @@ using Poco::Util::OptionCallback;
 using Poco::Util::OptionSet;
 using Poco::Util::ServerApplication;
 
-#include "http_request_factory.h"
-#include "../database/user.h"
+#include "http_request_factory.hpp"
+//#include "../database/user.h"
 
-class HTTPUserServer : public Poco::Util::ServerApplication
-{
-public:
-    HTTPUserServer() : _helpRequested(false)
-    {
-    }
+class HTTPUserServer : public Poco::Util::ServerApplication {
+ public:
+  HTTPUserServer() = default;
+  ~HTTPUserServer() override = default;
 
-    ~HTTPUserServer()
-    {
-    }
+ protected:
+  void initialize(Application& self) override {
+    loadConfiguration();
+    ServerApplication::initialize(self);
+  }
 
-protected:
-    void initialize(Application &self)
-    {
-        loadConfiguration();
-        ServerApplication::initialize(self);
-    }
+  void uninitialize() override {
+    ServerApplication::uninitialize();
+  }
 
-    void uninitialize()
-    {
-        ServerApplication::uninitialize();
-    }
+  int main(const std::vector<std::string>& args) {
+    Report::crate_report_table();
 
-    int main([[maybe_unused]] const std::vector<std::string> &args)
-    {
-        if (!_helpRequested)
-        {
-            database::User::init();
-            ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8080));
-            HTTPServer srv(new HTTPRequestFactory(DateTimeFormat::SORTABLE_FORMAT), svs, new HTTPServerParams);
-            srv.start();
-            waitForTerminationRequest();
-            srv.stop();
-        }
-        return Application::EXIT_OK;
-    }
-
-private:
-    bool _helpRequested;
+    ServerSocket svs(Poco::Net::SocketAddress("0.0.0.0", 8080));
+    HTTPServer srv(new HTTPRequestFactory(DateTimeFormat::SORTABLE_FORMAT), svs, new HTTPServerParams);
+    
+    srv.start();
+    waitForTerminationRequest();
+    srv.stop();
+    
+    return Application::EXIT_OK;
+  }
 };
-#endif // !HTTPWEBSERVER

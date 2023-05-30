@@ -1,8 +1,9 @@
 #include "database.hpp"
-#include "../config/config.hpp"
+#include "config/config.hpp"
 
 Database::Database(){
-  conn_string = "";
+  std::string conn_string = "";
+  
   conn_string += "host=" + Config::host;
   conn_string += ";user=" + Config::login;
   conn_string += ";db=" + Config::database;

@@ -10,12 +10,11 @@
 
 #include "report.hpp"
 #include "database.hpp"
-#include "../config/config.hpp"
 
 std::optional<Report> Report::load(int id) { return std::optional<Report>(); }
 
 //later
-Poco::JSON::Object::Ptr Report::to_json(const Report&) {
+Poco::JSON::Object::Ptr Report::to_json(const Report& report) {
   Poco::JSON::Object::Ptr json_report = new Poco::JSON::Object();
 
   json_report->set("id", _id);

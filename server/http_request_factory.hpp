@@ -19,7 +19,6 @@
 #include "Poco/Util/HelpFormatter.h"
 #include <iostream>
 
-#include "handlers/rukovoditel_handler.hpp"
 
 using Poco::Net::HTTPRequestHandler;
 using Poco::Net::HTTPRequestHandlerFactory;
@@ -40,8 +39,9 @@ using Poco::DateTimeFormat;
 using Poco::ThreadPool;
 
 #include "../util/strings.hpp"
+#include "handlers/report_handler.hpp"
 
-class HTTPRequestFactory: public HTTPRequestHandlerFactory {
+class HTTPRequestFactory : public HTTPRequestHandlerFactory {
  public:
   HTTPRequestFactory(const std::string& format) : format(format) {}
 
@@ -49,7 +49,7 @@ class HTTPRequestFactory: public HTTPRequestHandlerFactory {
     std::cout << "request:" << request.getURI()<< std::endl;
     
     if (HasInStr(request.getURI(), "/create_report")) {
-      return new RukovoditelHandler(format);
+      return new ReportHandler(format);
     }
 
     return nullptr;

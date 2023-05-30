@@ -16,7 +16,7 @@ struct Report {
   void save();
   static std::optional<Report> load(int id);
 
-  static Poco::JSON::Object::Ptr to_json(const Report&);
+  static Poco::JSON::Object::Ptr to_json(const Report& report);
   
   static void crate_report_table();
 };

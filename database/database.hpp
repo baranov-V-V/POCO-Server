@@ -15,7 +15,6 @@ class Database{
   Poco::Data::Session create_session();
  
  private:
-  std::string conn_string;
   std::unique_ptr<Poco::Data::SessionPool> conn_pool;
   
   Database();

@@ -1,8 +1,6 @@
-#include "user_service/http_user_server.h"
+#include "server/http_user_server.hpp"
 
-
-int main(int argc, char*argv[]) 
-{
-    HTTPUserServer app;
-    return app.run(argc, argv);
+int main(int argc, char* argv[]) {
+  HTTPUserServer app;
+  return app.run(argc, argv);
 }
