@@ -19,7 +19,7 @@ Database::Database() {
   conn_pool = std::make_unique<Poco::Data::SessionPool>(Poco::Data::MySQL::Connector::KEY, conn_string);
 }
 
-Database& Database::get(){
+Database& Database::get() {
   static Database instance;
   return instance;
 }

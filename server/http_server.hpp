@@ -29,10 +29,8 @@ class HTTPUserServer : public Poco::Util::ServerApplication {
   }
 
   int main(const std::vector<std::string>& args) {
-    //Report::create_report_table();
-
     ServerSocket svs(Poco::Net::SocketAddress("127.0.0.1", 8080));
-    HTTPServer srv(new HTTPRequestFactory(), svs, new HTTPServerParams);
+    HTTPServer srv(new HTTPRequestFactory(), svs, new HTTPServerParams());
     
     srv.start();
     waitForTerminationRequest();
